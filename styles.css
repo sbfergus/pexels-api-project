@@ -2,11 +2,11 @@
     margin: 0;
 }
 
-#container {
-    
+.grid {
+    margin: auto;
 }
 
-.picture {
-    margin: 10px;
-    display: inline;
+.grid-item {
+    margin-bottom: 10px;
+    
 }

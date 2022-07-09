@@ -6,17 +6,23 @@ xhttp.onreadystatechange = function() {
        var data = JSON.parse(xhttp.responseText);
        var photos = data.photos;
        console.log(photos);
-       var container = document.getElementById('container');
-       container.innerHTML = '';
+       var grid = document.querySelector('.grid');
+       
+       grid.innerHTML = '';
        photos.forEach(function(pic) {
             var picture = document.createElement('div');
-            picture.classList.add('picture');
+            picture.classList.add('grid-item');
             picture.innerHTML = `
                 <img src="${pic.src.large}" width=400>
             `;
-            container.appendChild(picture);
+            grid.appendChild(picture);
             
        });
+       var msnry = new Masonry( grid, {
+        itemSelector: '.grid-item',
+        fitWidth: true,
+        gutter: 10
+      });
        
     }
 };
