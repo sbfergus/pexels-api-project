@@ -16,10 +16,12 @@ xhttp.onreadystatechange = function() {
                 <img src="${pic.src.large}" alt="${pic.alt}" width=400>
                 
                 <div class="artist-name">
-                    <img class="avatar" 
-                           src="https://images.pexels.com/users/avatars/144244/stein-egil-liland-939.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1" 
-                           alt="">
-                    <h5>${pic.photographer}</h5>
+                    <div class="artist-flex">
+                        <img class="avatar" 
+                                src="https://images.pexels.com/users/avatars/144244/stein-egil-liland-939.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1" 
+                                alt="">
+                        <h5>${pic.photographer}</h5>
+                    </div>
                 </div>
             `;
             picture.addEventListener('mouseover', function() {
@@ -33,13 +35,13 @@ xhttp.onreadystatechange = function() {
         grid.appendChild(picture);
             
        });
-       var msnry = new Masonry( grid, {
+
+      var msnry = new Masonry( grid, {
         itemSelector: '.grid-item',
         fitWidth: true,
         gutter: 10
       });
       imagesLoaded( grid ).on( 'progress', function() {
-        // layout Masonry after each image loads
         msnry.layout();
       });
       
