@@ -61,7 +61,7 @@ xhttp.onreadystatechange = function() {
       var msnry = new Masonry( grid, {
         itemSelector: '.grid-item',
         fitWidth: true,
-        gutter: 10
+        gutter: 25
       });
       imagesLoaded( grid ).on( 'progress', function() {
         msnry.layout();
