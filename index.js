@@ -13,9 +13,19 @@ xhttp.onreadystatechange = function() {
             var picture = document.createElement('div');
             picture.classList.add('grid-item');
             picture.innerHTML = `
-                <img src="${pic.src.large}" width=400>
+                <img src="${pic.src.large}" alt="${pic.alt}" width=400>
+                
+                <div class="artist-name">${pic.photographer}</div>
             `;
-            grid.appendChild(picture);
+            picture.addEventListener('mouseover', function() {
+                    this.children[1].classList.add('active');
+            });
+            picture.addEventListener('mouseout', function() {
+                this.children[1].classList.remove('active');
+            });
+                
+        
+        grid.appendChild(picture);
             
        });
        var msnry = new Masonry( grid, {
@@ -23,6 +33,7 @@ xhttp.onreadystatechange = function() {
         fitWidth: true,
         gutter: 10
       });
+      
        
     }
 };

@@ -8,5 +8,23 @@
 
 .grid-item {
     margin-bottom: 10px;
-    
+}
+
+.grid-item:hover {
+    cursor: pointer;
+}
+
+.artist-name {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.active {
+    display: block;
 }
