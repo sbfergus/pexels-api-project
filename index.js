@@ -14,19 +14,34 @@ xhttp.onreadystatechange = function() {
             picture.classList.add('grid-item');
             picture.innerHTML = `
                 <img src="${pic.src.large}" alt="${pic.alt}" width=400>
-                
-                <div class="artist-name">
-                    <div class="pic-bottom-flex">
-                        <div class="artist-flex">
-                            <img class="avatar" 
-                                    src="https://images.pexels.com/lib/avatars/orange.png?w=40&h=40&fit=crop&dpr=1" 
-                                    alt="">
-                            <h5>${pic.photographer}</h5>
+
+                <div class="pic-hover-info">
+
+                    <div class="collect-like">
+                        <div class="pic-top-flex">
+                            <img class="icon bookmark" 
+                                src="bookmark.png"
+                                alt="collect">
+                            <img class="icon heart"
+                                src="heart.png"
+                                alt="like">
                         </div>
-                        <img class="download-icon"
-                            src="download-icon.png"
-                            alt="download icon">
-                    </div>    
+                    </div>
+
+                    <div class="artist-name">
+                        <div class="pic-bottom-flex">
+                            <div class="artist-flex">
+                                <img class="avatar" 
+                                        src="https://images.pexels.com/lib/avatars/orange.png?w=40&h=40&fit=crop&dpr=1" 
+                                        alt="">
+                                <h5>${pic.photographer}</h5>
+                            </div>
+                            <img class="icon download"
+                                src="download-icon.png"
+                                alt="download">
+                        </div>    
+                    </div>
+                    
                 </div>
             `;
             picture.addEventListener('mouseover', function() {

@@ -14,8 +14,11 @@
     cursor: pointer;
 }
 
-.artist-name {
+.pic-hover-info {
     display: none;
+}
+
+.artist-name {
     position: absolute;
     bottom: 20px;
     left: 10px;
@@ -27,7 +30,7 @@
     display: block;
 }
 
-.pic-bottom-flex {
+.pic-bottom-flex, .pic-top-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,16 +56,35 @@ h5 {
     margin-left: 15px;
 }
 
-.download-icon {
+.icon {
     padding: 10px;
     border-radius: 10px;
     width: 20px;
     height: 20px;
     background-color: #fff;
+}
+
+.download {
     margin-right: 7%;
 }
 
-.download-icon:hover {
+.icon:hover {
     opacity: .9;
 }
+
+.collect-like {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}
+
+.bookmark {
+    margin-right: 10px;
+}
+
+.heart {
+    margin-right: 18px;
+}
+
+
 
