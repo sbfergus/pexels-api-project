@@ -16,12 +16,17 @@ xhttp.onreadystatechange = function() {
                 <img src="${pic.src.large}" alt="${pic.alt}" width=400>
                 
                 <div class="artist-name">
-                    <div class="artist-flex">
-                        <img class="avatar" 
-                                src="https://images.pexels.com/users/avatars/144244/stein-egil-liland-939.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1" 
-                                alt="">
-                        <h5>${pic.photographer}</h5>
-                    </div>
+                    <div class="pic-bottom-flex">
+                        <div class="artist-flex">
+                            <img class="avatar" 
+                                    src="https://images.pexels.com/lib/avatars/orange.png?w=40&h=40&fit=crop&dpr=1" 
+                                    alt="">
+                            <h5>${pic.photographer}</h5>
+                        </div>
+                        <img class="download-icon"
+                            src="download-icon.png"
+                            alt="download icon">
+                    </div>    
                 </div>
             `;
             picture.addEventListener('mouseover', function() {
