@@ -30,18 +30,20 @@ xhttp.onreadystatechange = function() {
 
                     <div class="artist-name">
                         <div class="pic-bottom-flex">
-                            <div class="artist-flex">
-                                <img class="avatar" 
-                                        src="https://images.pexels.com/lib/avatars/orange.png?w=40&h=40&fit=crop&dpr=1" 
-                                        alt="">
-                                <h5>${pic.photographer}</h5>
-                            </div>
+                            <a href="${pic.photographer_url}">
+                                <div class="artist-flex">
+                                    <img class="avatar" 
+                                            src="https://images.pexels.com/lib/avatars/orange.png?w=40&h=40&fit=crop&dpr=1" 
+                                            alt="">
+                                    <h5>${pic.photographer}</h5>
+                                </div>
+                            </a>
                             <img class="icon download"
                                 src="download-icon.png"
                                 alt="download">
                         </div>    
                     </div>
-                    
+
                 </div>
             `;
             picture.addEventListener('mouseover', function() {
