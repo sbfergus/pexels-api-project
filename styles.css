@@ -20,11 +20,21 @@
     bottom: 20px;
     left: 10px;
     color: white;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.25rem;
 }
 
 .active {
     display: block;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 50px;
+    display: inline-block;
+}
+
+h5 {
+    display: inline-block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
 }

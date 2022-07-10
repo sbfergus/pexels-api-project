@@ -15,7 +15,12 @@ xhttp.onreadystatechange = function() {
             picture.innerHTML = `
                 <img src="${pic.src.large}" alt="${pic.alt}" width=400>
                 
-                <div class="artist-name">${pic.photographer}</div>
+                <div class="artist-name">
+                    <img class="avatar" 
+                           src="https://images.pexels.com/users/avatars/144244/stein-egil-liland-939.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1" 
+                           alt="">
+                    <h5>${pic.photographer}</h5>
+                </div>
             `;
             picture.addEventListener('mouseover', function() {
                     this.children[1].classList.add('active');
@@ -32,6 +37,10 @@ xhttp.onreadystatechange = function() {
         itemSelector: '.grid-item',
         fitWidth: true,
         gutter: 10
+      });
+      imagesLoaded( grid ).on( 'progress', function() {
+        // layout Masonry after each image loads
+        msnry.layout();
       });
       
        
