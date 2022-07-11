@@ -67,7 +67,8 @@ xhttp.onreadystatechange = function() {
         msnry.layout();
       });
       
-       
+      
+    
     }
 };
 xhttp.open("GET", "https://api.pexels.com/v1/search?query=nature", true);

@@ -2,6 +2,45 @@
     margin: 0;
 }
 
+html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.gallery-title {
+    font-size: 3rem;
+    padding-top: 50px;
+}
+
+.gallery-options-container {
+    margin: 30px 0px;
+}
+
+.photos-option-container {
+    background-color: black;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    padding: 12px 23px;
+    border-radius: 30px;
+}
+
+.photos-option-container h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.photos-option-container span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgb(127, 127, 127);
+    margin-left: 8px;
+}
+
+.grid-container {
+    margin: auto;
+    width: 400px;
+} 
+
 .grid {
     margin: auto;
 }
@@ -50,7 +89,6 @@
 
 h5 {
     display: inline-block;
-    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
     margin-left: 15px;
@@ -93,3 +131,18 @@ a {
 
 
 
+
+
+
+@media only screen and (min-width: 840px) {
+    .grid-container {
+        width: 825px;
+    }
+}
+
+
+@media only screen and (min-width: 1265.6px) {
+    .grid-container {
+        width: 1250px;
+    } 
+}
