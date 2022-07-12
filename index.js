@@ -78,13 +78,17 @@ xhttp.send();
 
 const filters = document.querySelector('.filters');
 const filterDropdown = document.querySelector('.filter-dropdown');
+const filterIcon = document.querySelector('.filter-icon');
+let rotated = false;
+
 filters.addEventListener('click', function() {
-    console.log(filterDropdown.style.height);
     filterDropdown.classList.toggle("show-dropdown");
-    // if (filterDropdown.style.height === '0px') {
-    //     filterDropdown.style.height = '200px';
-        
-    // } else {
-    //     filterDropdown.style.height = '0px';
-    // }
+    if (rotated) {
+        filterIcon.classList.add('rotate-up');
+        rotated = false;
+    } else {
+        filterIcon.classList.remove('rotate-up')
+        filterIcon.classList.add('rotate-down');
+        rotated = true;
+    }
 })

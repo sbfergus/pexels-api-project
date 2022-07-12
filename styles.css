@@ -176,17 +176,28 @@ select {
 
 .filter-dropdown {
     height: 0px;
-    transition: .1s ease all;
+    transition: .2s ease all;
     visibility: hidden;
     opacity: 0;
 }
 
 .show-dropdown {
-    height:150px;
-    transition: .1s ease all;
+    height:135px;
+    transition: .2s ease all;
     visibility: visible;
     opacity: 1;
 }
+
+.rotate-down {
+    transform: rotate(-180deg);
+    transition: transform .2s linear;
+}
+
+.rotate-up {
+    transform: rotate(0deg);
+    transition: transform .2s linear;
+}
+
 
 
 
