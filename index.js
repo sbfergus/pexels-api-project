@@ -13,8 +13,9 @@ xhttp.onreadystatechange = function() {
             var picture = document.createElement('div');
             picture.classList.add('grid-item');
             picture.innerHTML = `
-                <img src="${pic.src.large}" alt="${pic.alt}" width=400>
-
+                <a href="${pic.url}">
+                    <img src="${pic.src.large}" alt="${pic.alt}" width=400>
+                </a>
                 <div class="pic-hover-info">
 
                     <div class="collect-like">
@@ -75,3 +76,15 @@ xhttp.open("GET", "https://api.pexels.com/v1/search?query=nature", true);
 xhttp.setRequestHeader('Authorization', '563492ad6f91700001000001161560f93ba9468a8b2a5cfd7aecf193');
 xhttp.send();
 
+const filters = document.querySelector('.filters');
+const filterDropdown = document.querySelector('.filter-dropdown');
+filters.addEventListener('click', function() {
+    console.log(filterDropdown.style.height);
+    filterDropdown.classList.toggle("show-dropdown");
+    // if (filterDropdown.style.height === '0px') {
+    //     filterDropdown.style.height = '200px';
+        
+    // } else {
+    //     filterDropdown.style.height = '0px';
+    // }
+})
