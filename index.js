@@ -21,10 +21,10 @@ xhttp.onreadystatechange = function() {
                     <div class="collect-like">
                         <div class="pic-top-flex">
                             <img class="icon bookmark" 
-                                src="bookmark.png"
+                                src="images/bookmark.png"
                                 alt="collect">
                             <img class="icon heart"
-                                src="heart.png"
+                                src="images/heart.png"
                                 alt="like">
                         </div>
                     </div>
@@ -35,12 +35,12 @@ xhttp.onreadystatechange = function() {
                                 <div class="artist-flex">
                                     <img class="avatar" 
                                             src="https://images.pexels.com/lib/avatars/orange.png?w=40&h=40&fit=crop&dpr=1" 
-                                            alt="">
+                                            alt="artist avatar photo">
                                     <h5>${pic.photographer}</h5>
                                 </div>
                             </a>
                             <img class="icon download"
-                                src="download-icon.png"
+                                src="images/download-icon.png"
                                 alt="download">
                         </div>    
                     </div>
