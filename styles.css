@@ -6,6 +6,10 @@ html {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+button {
+    all: unset;
+}
+
 nav {
     position: fixed;
     z-index: 99;
@@ -21,6 +25,7 @@ nav {
     display: flex;
     align-items: center;
     margin-left: 12px;
+    flex: 1;
 }
 
 .logo-link {
@@ -41,6 +46,7 @@ nav {
 .search-input-container {
     display: flex;
     align-items: center;
+    background-color: aqua;
 }
 
 input[type="text"] {
@@ -51,13 +57,23 @@ input[type="text"] {
     padding: 15px;
     border: none;
     margin-left: 5px;
-    width: 275px;
+    flex: 1;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+ }
+
+ input[type="text"]::placeholder {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
  }
 
 .search-btn {
     border: none;
-    padding: 12px 20px;
+    padding: 16.5px 20px;
     border-radius: 0px 10px 10px 0px;
+    background-color: #f1f1f1;
 }
 
 .search-btn:hover {
@@ -66,6 +82,65 @@ input[type="text"] {
 
 .search-btn img {
      width: 18px; 
+}
+
+.navbar-right {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.explore, .license, .notification, .profile, .uploadBtn {
+    display: none;
+}
+
+.profile {
+    display: none;
+}
+
+.profile-icon {
+    border-radius: 50%;
+    padding: 5px;
+    width: 20px;
+    background-color: #F0E6FB;
+}
+
+.down-carrot {
+    width: 10px;
+    filter: invert(94%) sepia(6%) saturate(18%) hue-rotate(325deg) brightness(83%) contrast(88%);
+    padding: 10px;
+}
+
+.profile:hover {
+    cursor: pointer;
+    transition: .5s ease filter;
+    filter: brightness(0.7);
+}
+
+.profile:hover .down-carrot {
+    transform: scaleY(-1);
+}
+
+.uploadBtn {
+    background-color: #05a081;
+    border-radius: 8px;
+    padding: 15px 20px;
+    color: white;
+    font-weight: 600;
+}
+
+.uploadBtn:hover {
+    background-color: #059377;
+}
+
+.mobile-menu {
+    width: 25px;
+    padding: 15px;
+}
+
+.mobile-menu:hover {
+    cursor: pointer;
+    opacity: .6;
 }
 
 .gallery-title {
@@ -266,9 +341,18 @@ select {
 
 
 
+@media only screen and (min-width: 650px) {
+    .profile {
+        display: flex;
+        align-items: center;
+        margin: 15px;
+        transition: .5s ease filter;
+    }
+    .uploadBtn {
+        display: block;
+    }
 
-
-
+}
 
 @media only screen and (min-width: 840px) {
     .grid-container {
@@ -276,6 +360,13 @@ select {
     }
     .site-name {
         display: block;
+    }
+    
+}
+
+@media only screen and (min-width: 900px) {
+    .mobile-menu {
+        display: none;
     }
     
 }
