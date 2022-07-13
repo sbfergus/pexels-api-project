@@ -74,6 +74,7 @@ input[type="text"] {
     padding: 16.5px 20px;
     border-radius: 0px 10px 10px 0px;
     background-color: #f1f1f1;
+    /* margin-right: 5px; */
 }
 
 .search-btn:hover {
@@ -90,13 +91,36 @@ input[type="text"] {
     align-items: center;
 }
 
+.navbar-right a p {
+    font-size: 1rem;
+}
+
 .explore, .license, .notification, .profile, .uploadBtn {
     display: none;
 }
 
+.license, .explore {
+    font-weight: 600;
+    color: rgb(74, 74, 74);
+    padding: 7px;
+}
+
+.license {
+    margin-right: 15px;
+}
+
+.explore {
+    margin-left: 20px;
+}
+
+.explore:hover .down-carrot {
+    transform: scaleY(-1);
+    filter: brightness(0.7);
+}
+
 .notification {
     display: none;
-    margin: 15px;
+    margin: 5px;
 }
 
 .bell {
@@ -141,6 +165,7 @@ input[type="text"] {
     padding: 15px 20px;
     color: white;
     font-weight: 600;
+    /* margin-right: 20px; */
 }
 
 .uploadBtn:hover {
@@ -149,7 +174,7 @@ input[type="text"] {
 
 .mobile-menu {
     width: 25px;
-    padding: 15px;
+    padding: 10px;
 }
 
 .mobile-menu:hover {
@@ -380,8 +405,19 @@ select {
 }
 
 @media only screen and (min-width: 900px) {
+    .license {
+        display: block;
+    }
+    .explore {
+        display: flex;
+        align-items: center;
+    }
     .mobile-menu {
         display: none;
+    }
+    input[type="text"] {
+        /* flex:none; */
+        width: 165px;
     }
     
 }
