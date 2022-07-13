@@ -94,6 +94,20 @@ input[type="text"] {
     display: none;
 }
 
+.notification {
+    display: none;
+    margin: 15px;
+}
+
+.bell {
+    width: 19px;
+    height: 21px;
+}
+
+.notification:hover {
+    opacity: .7;
+}
+
 .profile {
     display: none;
 }
@@ -348,9 +362,10 @@ select {
         margin: 15px;
         transition: .5s ease filter;
     }
-    .uploadBtn {
+    .uploadBtn, .notification {
         display: block;
     }
+     
 
 }
 
