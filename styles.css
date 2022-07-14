@@ -26,6 +26,8 @@ nav {
     align-items: center;
     margin-left: 12px;
     flex: 1;
+    margin-right: 10px;
+    
 }
 
 .logo-link {
@@ -35,7 +37,8 @@ nav {
 
 .site-name {
     display: none;
-    margin-right: 10px;
+    font-weight: 600;
+    font-size: 1.325rem;
 }
 
 .logo {
@@ -50,31 +53,32 @@ nav {
 }
 
 input[type="text"] {
+    width: 50px;
     box-sizing: border-box;
     outline: none;
     background-color: #f1f1f1;
     border-radius: 10px 0px 0px 10px;
-    padding: 15px;
+    padding: 9px 15px;
     border: none;
     margin-left: 5px;
     flex: 1;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 600;
  }
 
  input[type="text"]::placeholder {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 500;
  }
 
 .search-btn {
+    height: 22px;
     border: none;
-    padding: 16.5px 20px;
+    padding: 10px 20px 10px 5px;
     border-radius: 0px 10px 10px 0px;
     background-color: #f1f1f1;
-    /* margin-right: 5px; */
 }
 
 .search-btn:hover {
@@ -165,7 +169,7 @@ input[type="text"] {
     padding: 15px 20px;
     color: white;
     font-weight: 600;
-    /* margin-right: 20px; */
+    margin-right: 10px;
 }
 
 .uploadBtn:hover {
@@ -387,25 +391,24 @@ select {
         margin: 15px;
         transition: .5s ease filter;
     }
+    .navbar-right {
+        margin-right: 30x;
+    }
     .uploadBtn, .notification {
         display: block;
     }
      
-
 }
 
 @media only screen and (min-width: 840px) {
     .grid-container {
         width: 825px;
     }
-    .site-name {
-        display: block;
-    }
     
 }
 
 @media only screen and (min-width: 900px) {
-    .license {
+    .site-name, .license {
         display: block;
     }
     .explore {
@@ -416,8 +419,7 @@ select {
         display: none;
     }
     input[type="text"] {
-        /* flex:none; */
-        width: 165px;
+        margin-left: 30px;
     }
     
 }
@@ -431,8 +433,6 @@ select {
         width: 70px;
         padding: 5px;
     }
-   
-    
     .gallery-title {
         font-size: 3rem;
         font-weight: 700;
@@ -440,4 +440,5 @@ select {
     .grid-container {
         width: 1250px;
     } 
+
 }
