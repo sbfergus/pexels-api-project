@@ -179,7 +179,13 @@ input[type="text"] {
     padding: 10px;
 }
 
-.mobile-menu:hover {
+.cancel {
+    width: 40px;
+    display: none;
+    padding: 2.5px;
+}
+
+.mobile-menu:hover, .cancel:hover {
     cursor: pointer;
     opacity: .6;
 }
