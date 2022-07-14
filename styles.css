@@ -19,6 +19,7 @@ nav {
     background-color: white;
     display: flex;
     align-items: center;
+    transition: .2s ease background-color;
 }
 
 .navbar-left {
@@ -188,6 +189,43 @@ input[type="text"] {
 .mobile-menu:hover, .cancel:hover {
     cursor: pointer;
     opacity: .6;
+}
+
+.mobile-menu-options {
+    display: none;
+    background-color: black;
+    transition: .2s ease background-color;
+    width: 100%;   
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px;
+    padding-left: 15px;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.menu1 {
+    padding-top: 100px;
+    padding-bottom: 15px;
+}
+
+.menu2 {
+    padding-top: 35px;
+    padding-bottom: 15px;
+}
+
+.menu3 {
+    
+}
+
+li {
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0px;
+    padding-bottom: 20px;
 }
 
 .gallery-title {

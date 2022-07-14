@@ -104,17 +104,23 @@ filters.addEventListener('click', function() {
 const mobileMenu = document.querySelector('.mobile-menu');
 const cancelBtn = document.querySelector('.cancel');
 const nav = document.querySelector('nav');
-const logo = document.querySelector('.logo');  
+const logo = document.querySelector('.logo');
+const photoGrid = document.querySelector('.grid-container');
+const mobileMenuOptions = document.querySelector('.mobile-menu-options'); 
 mobileMenu.addEventListener('click', function() {
     mobileMenu.style.display = 'none';
     cancelBtn.style.display = 'block';
     nav.style.backgroundColor = 'black';
     logo.src = 'images/PicHunter-logo-black.png';
+    photoGrid.style.display = 'none';
+    mobileMenuOptions.style.display = 'block';
+
 })
 cancelBtn.addEventListener('click', function() {
     cancelBtn.style.display = 'none';
     mobileMenu.style.display = 'block';
     nav.style.backgroundColor = 'white';
     logo.src = 'images/PicHunter-logo.png';
-
+    photoGrid.style.display = 'block';
+    mobileMenuOptions.style.display = 'none';
 })
