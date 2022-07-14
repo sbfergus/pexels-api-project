@@ -19,12 +19,14 @@
                 <img class='logo' src="images/PicHunter-logo.png" alt="PicHunter Logo">
                 <h1 class="site-name">PicHunter</h1>
             </a>
-            <!-- <div class="search-input-container"> -->
-                <input type="text" placeholder="Search for free photos">
-                <button class="search-btn">
-                    <img src="images/magnifying-glass.png" alt"click magnifying glass to search">
-                </button>
-            <!-- </div> -->
+            
+            <form id="search-form">
+                <input type="text" placeholder="Search for free photos" id="search-bar">
+            </form>
+            <button class="search-btn" type="submit" form="search-form">
+                <img src="images/magnifying-glass.png" alt"click magnifying glass to search">
+            </button>
+            
         </div>
 
         <div class="navbar-right">
@@ -58,7 +60,7 @@
         </div>
 
         <div>
-            <h2 class="gallery-title">Nature Images</h2>
+            <h2 class="gallery-title"><span id="search-name"></span> Images</h2>
         </div>
 
         <div class="gallery-options-container">

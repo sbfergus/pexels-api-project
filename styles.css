@@ -46,14 +46,12 @@ nav {
     padding: 5px;
 }
 
-.search-input-container {
-    display: flex;
-    align-items: center;
-    background-color: aqua;
+form {
+    flex: 1;
 }
 
 input[type="text"] {
-    width: 50px;
+    width: 100%;
     box-sizing: border-box;
     outline: none;
     background-color: #f1f1f1;
