@@ -111,6 +111,7 @@ mobileMenu.addEventListener('click', function() {
     mobileMenu.style.display = 'none';
     cancelBtn.style.display = 'block';
     nav.style.backgroundColor = 'black';
+    nav.style.borderColor = 'hsla(0,0%,100%,.2)';
     logo.src = 'images/PicHunter-logo-black.png';
     photoGrid.style.display = 'none';
     mobileMenuOptions.style.display = 'block';
