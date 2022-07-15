@@ -106,7 +106,8 @@ const cancelBtn = document.querySelector('.cancel');
 const nav = document.querySelector('nav');
 const logo = document.querySelector('.logo');
 const photoGrid = document.querySelector('.grid-container');
-const mobileMenuOptions = document.querySelector('.mobile-menu-options'); 
+const mobileMenuOptions = document.querySelector('.mobile-menu-options');
+const bell = document.querySelector('.bell'); 
 mobileMenu.addEventListener('click', function() {
     mobileMenu.style.display = 'none';
     cancelBtn.style.display = 'block';
@@ -115,7 +116,7 @@ mobileMenu.addEventListener('click', function() {
     logo.src = 'images/PicHunter-logo-black.png';
     photoGrid.style.display = 'none';
     mobileMenuOptions.style.display = 'block';
-
+    bell.style.filter = 'invert(1)';
 })
 cancelBtn.addEventListener('click', function() {
     cancelBtn.style.display = 'none';
@@ -124,4 +125,5 @@ cancelBtn.addEventListener('click', function() {
     logo.src = 'images/PicHunter-logo.png';
     photoGrid.style.display = 'block';
     mobileMenuOptions.style.display = 'none';
+    bell.style.filter = 'invert(0)';
 })

@@ -28,7 +28,6 @@ nav {
     margin-left: 12px;
     flex: 1;
     margin-right: 10px;
-    
 }
 
 .logo-link {
@@ -246,8 +245,6 @@ hr {
     
 }
 
-
-
 .social-footer {
     width: 100%;
     border-top: 1px solid  hsla(0,0%,100%,.2);
@@ -255,9 +252,7 @@ hr {
 }
 
 .social-flex-container {
-    /* background-color: burlywood; */
     height: 50px;
-    /* width: 100vw; */
     display: flex;
     align-items: center;
     padding: 0px 28px;
@@ -269,11 +264,8 @@ hr {
 }
 
 .social-footer img {
-    /* margin: 10px; */
     width: 25px;
     transition: .25s ease all;
-    /* flex: 1; */
-    
 }
 
 .social-footer img:hover, li:hover {
