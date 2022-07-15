@@ -204,8 +204,18 @@ ul {
     padding-left: 15px;
 }
 
+li {
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0px;
+    padding-bottom: 20px;
+    transition: .25s ease all;
+}
+
 hr {
-    width: 90%;
+    width: 95%;
     margin: auto;
     height: 1px;
     background: hsla(0,0%,100%,.2);
@@ -236,13 +246,39 @@ hr {
     
 }
 
-li {
-    color: white;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0px;
-    padding-bottom: 20px;
+
+
+.social-footer {
+    width: 100%;
+    border-top: 1px solid  hsla(0,0%,100%,.2);
+    padding: 20px 0px;
+}
+
+.social-flex-container {
+    /* background-color: burlywood; */
+    height: 50px;
+    /* width: 100vw; */
+    display: flex;
+    align-items: center;
+    padding: 0px 28px;
+    justify-content:space-between;
+}
+
+.social-footer a {
+    height: 25px;
+}
+
+.social-footer img {
+    /* margin: 10px; */
+    width: 25px;
+    transition: .25s ease all;
+    /* flex: 1; */
+    
+}
+
+.social-footer img:hover, li:hover {
+    transition: .25s ease all;
+    opacity: .7;
 }
 
 .gallery-title {
