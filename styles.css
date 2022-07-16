@@ -145,7 +145,7 @@ input[type="text"] {
 .profile {
     display: none;
     position: relative;
-    /* height: auto; */
+    height: 60px;
 }
 
 .profile-icon {
@@ -214,10 +214,31 @@ input[type="text"] {
     right: -7px;
 }
 
+.profile .drop-down-menu {
+    width: 225px;
+    top: 55px;
+    right: 0px;
+}
+
+.profile-hr {
+    height: 1px;
+    background: #f1f1f1;
+    width: 100%;
+    margin: 5px 0px;
+}
+
 .drop-down-menu a {
     display: block;
     padding: 10px;
     padding-left: 25px;
+    font-weight: 600;
+    color: rgb(74, 74, 74)
+}
+
+.profile-dropdown-lang {
+    position: absolute;
+    top: 13px;
+    right: 48px;
 }
 
 .drop-down-menu a:hover {
