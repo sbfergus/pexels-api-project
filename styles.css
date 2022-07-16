@@ -113,12 +113,20 @@ input[type="text"] {
 
 .explore {
     margin-left: 20px;
+    position: relative;
+    height: 50px;
 }
+
+.explore:hover {
+    cursor: pointer;
+} 
 
 .explore:hover .down-carrot {
     transform: scaleY(-1);
     filter: brightness(0.7);
 }
+
+
 
 .notification {
     display: none;
@@ -136,6 +144,8 @@ input[type="text"] {
 
 .profile {
     display: none;
+    position: relative;
+    /* height: auto; */
 }
 
 .profile-icon {
@@ -151,7 +161,7 @@ input[type="text"] {
     padding: 10px;
 }
 
-.profile:hover {
+.profile:hover img {
     cursor: pointer;
     transition: .5s ease filter;
     filter: brightness(0.7);
@@ -159,6 +169,41 @@ input[type="text"] {
 
 .profile:hover .down-carrot {
     transform: scaleY(-1);
+}
+
+.drop-down-menu {
+    display: none;
+    position: absolute;
+    border: 1px solid #e1e1e1;;
+    border-radius: 15px;
+    background-color: white;
+    padding: 10px 0px;
+    box-shadow: 0px 13px 15px 1px rgba(0,0,0,0.07);
+    font-size: .9rem;
+}
+
+.explore .drop-down-menu {
+    width: 170px;
+    top: 55px;
+    right: -7px;
+}
+
+.drop-down-menu a {
+    display: block;
+    padding: 10px;
+    padding-left: 25px;
+}
+
+.drop-down-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.profile:hover .drop-down-menu {
+    display: block;
+}
+
+.explore:hover .drop-down-menu {
+    display: block;
 }
 
 .uploadBtn {
