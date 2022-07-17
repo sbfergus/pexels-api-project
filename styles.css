@@ -241,7 +241,29 @@ input[type="text"] {
     right: 48px;
 }
 
-.drop-down-menu a:hover {
+.social-in-dropdown {
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    margin: 0px 20px;
+}
+
+.social-in-dropdown a {
+    padding: 0;
+}
+
+.social-in-dropdown img {
+    width: 18px;
+    transition: .25s ease all;
+}
+
+.social-in-dropdown a img:hover {
+    transition: .25s ease all;
+    filter: brightness(0);
+}
+
+.drop-down-menu > a:hover {
     background-color: #f1f1f1;
 }
 
