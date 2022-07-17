@@ -7,6 +7,11 @@ searchForm.addEventListener('submit', function(e) {
         if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(xhttp.responseText);
         var photos = data.photos;
+        var randomNumPhotos = Math.random()*100;
+        randomNumPhotos = randomNumPhotos.toFixed(1);
+        var photoNum = document.querySelector('.random-photo-num');
+        photoNum.textContent = `${randomNumPhotos}k`;
+        
         console.log(photos);
         var grid = document.querySelector('.grid');
         
