@@ -9,6 +9,14 @@ searchForm.addEventListener('submit', function(e) {
         if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(xhttp.responseText);
         var photos = data.photos;
+        document.querySelector('.hero').style.display = 'none';
+        document.querySelector('.grid-container').style.display = 'block';
+        document.querySelector('.logo').style.filter = 'brightness(100%)';
+        document.querySelector('nav').style.borderBottom = '1px solid #f4f4f4';
+        document.querySelector('nav').style.backgroundColor = 'white';
+        // document.getElementsByClassName('down-carrot').style.filter = 'invert(94%) sepia(6%) saturate(18%) hue-rotate(325deg) brightness(83%) contrast(88%)';
+
+
         var randomNumPhotos = Math.random()*100;
         randomNumPhotos = randomNumPhotos.toFixed(1);
         var photoNum = document.querySelector('.random-photo-num');
