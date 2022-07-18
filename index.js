@@ -12,7 +12,12 @@ searchForm.addEventListener('submit', function(e) {
         var randomNumPhotos = Math.random()*100;
         randomNumPhotos = randomNumPhotos.toFixed(1);
         var photoNum = document.querySelector('.random-photo-num');
-        photoNum.textContent = `${randomNumPhotos}k`;
+        if (photos.length > 0) {
+            photoNum.textContent = `${randomNumPhotos}k`;
+        } else {
+            photoNum.textContent = `0`;
+        }
+        
         currentPage++;
         console.log(photos);
         var grid = document.querySelector('.grid');

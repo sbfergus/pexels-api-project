@@ -394,7 +394,7 @@ hr {
 }
 
 .word {
-    font-size: 1rem;
+    font-size: .9rem;
     padding: 10px;
     border: 1px solid black;
     border-radius: 10px;
@@ -472,6 +472,7 @@ h3 {
     margin: auto;
     padding-top: 40px;
     width: 400px;
+    /* display: none; */
 } 
 
 .grid {
@@ -619,6 +620,9 @@ select {
     .uploadBtn, .notification {
         display: block;
     }
+    .word {
+        font-size: 1rem;
+    }
      
 }
 
@@ -663,7 +667,7 @@ select {
         width: 1250px;
     } 
     .related-btns-container {
-        padding-top: 50px;
+        padding-top: 35px;
     }
     .word {
         font-size: 1.3rem;
