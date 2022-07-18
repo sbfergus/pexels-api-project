@@ -386,23 +386,31 @@ hr {
 }
 
 .related-btns-container {
-    margin-top: 80px;
-    display: flex;
+    margin-top: 50px;
+    display: none;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
 
 .word {
-    font-size: 2rem;
-    padding: 20px;
+    font-size: 1rem;
+    padding: 10px;
     border: 1px solid black;
     border-radius: 10px;
+    margin: 5px;
+    font-weight: 600;
+}
+
+.word:hover {
+    cursor: pointer;
+    background-color: #ffc864;
+    border-color: #ffc864;
 }
 
 .gallery-title {
     font-size: 1.8rem;
-    padding-top: 50px;
+    padding-top: 70px;
     font-weight: 600;
 }
 
@@ -654,5 +662,11 @@ select {
     .grid-container {
         width: 1250px;
     } 
+    .related-btns-container {
+        padding-top: 50px;
+    }
+    .word {
+        font-size: 1.3rem;
+    }
 
 }

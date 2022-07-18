@@ -185,11 +185,15 @@ searchForm.addEventListener('submit', function(e) {
 
         const xhr = new XMLHttpRequest();
         xhr.withCredentials = true;
-
+        var wordsContainer = document.querySelector('.related-btns-container');
+        wordsContainer.style.display = 'flex';
+        wordsContainer.innerHTML = '';
+        var galleryTitle = document.querySelector('.gallery-title');
+        galleryTitle.style.paddingTop = '25px';
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 var words = JSON.parse(this.responseText);
-                var wordsContainer = document.querySelector('.related-btns-container');
+                
                 words.typeOf.forEach(function(word) {
                     var wordBtn = document.createElement('div');
                     wordBtn.classList.add('word');
