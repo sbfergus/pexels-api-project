@@ -193,13 +193,11 @@ searchForm.addEventListener('submit', function(e) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 var words = JSON.parse(this.responseText);
-                
-                words.typeOf.forEach(function(word) {
+                var maxTenWords = words.typeOf.slice(0,15);
+                maxTenWords.forEach(function(word) {
                     var wordBtn = document.createElement('div');
                     wordBtn.classList.add('word');
                     wordBtn.innerHTML = word;
-                    // wordBtn.type = 'submit';
-                    // wordBtn.form = 'search-form';
                     wordsContainer.appendChild(wordBtn);
                 })
             }
@@ -219,11 +217,10 @@ var rootElement = document.querySelector('.related-btns-container');
 rootElement.addEventListener('click', rootElementClicked);
 function rootElementClicked(event) {
     event.preventDefault();
-    // const { name, value } = event.target;
     var searchValue = document.querySelector('#search-bar');
     searchValue.value = event.target.textContent;
-    console.log(`text content of target clicked: ${event.target.textContent}`);
-    // searchForm.submit();
+    console.log(searchValue.value);
+    searchForm.requestSubmit(); 
   }
 
 
@@ -270,5 +267,3 @@ cancelBtn.addEventListener('click', function() {
     mobileMenuOptions.style.display = 'none';
     bell.style.filter = 'invert(0)';
 })
-
-console.log(currentPage);
