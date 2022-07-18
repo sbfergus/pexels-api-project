@@ -385,6 +385,21 @@ hr {
     opacity: .7;
 }
 
+.related-btns-container {
+    margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.word {
+    font-size: 2rem;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
 .gallery-title {
     font-size: 1.8rem;
     padding-top: 50px;

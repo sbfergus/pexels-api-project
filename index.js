@@ -1,6 +1,7 @@
 //563492ad6f91700001000001161560f93ba9468a8b2a5cfd7aecf193
 let currentPage = 1;
 var searchForm = document.querySelector('#search-form');
+
 searchForm.addEventListener('submit', function(e) {
     e.preventDefault();
     var xhttp = new XMLHttpRequest();
@@ -174,6 +175,37 @@ window.addEventListener('scroll', () => {
     }
 }, {
     passive: true
+});
+
+
+
+searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = null;
+
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                var words = JSON.parse(this.responseText);
+                var wordsContainer = document.querySelector('.related-btns-container');
+                words.typeOf.forEach(function(word) {
+                    var wordBtn = document.createElement('div');
+                    wordBtn.classList.add('word');
+                    wordBtn.innerHTML = word;
+                    wordsContainer.appendChild(wordBtn);
+                })
+            }
+        });
+
+        var searchValue = document.querySelector('#search-bar').value;
+
+        xhr.open("GET", `https://wordsapiv1.p.rapidapi.com/words/${searchValue}/typeOf`);
+        xhr.setRequestHeader("X-RapidAPI-Key", "cbf93f50c0mshe3f948be30aeef0p110453jsn29d15e377c7a");
+        xhr.setRequestHeader("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
+
+        xhr.send(data);
 });
 
 
