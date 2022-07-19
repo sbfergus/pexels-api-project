@@ -1,4 +1,7 @@
-//563492ad6f91700001000001161560f93ba9468a8b2a5cfd7aecf193
+//
+var pexelKey = config.pexel_key;
+var wordsKey = config.words_key;
+
 let currentPage = 1;
 var searchForm = document.querySelector('#search-form');
 
@@ -98,7 +101,7 @@ searchForm.addEventListener('submit', function(e) {
     searchName.style.textTransform = "capitalize";
 
     xhttp.open("GET", `https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=30`, true);
-    xhttp.setRequestHeader('Authorization', '563492ad6f91700001000001161560f93ba9468a8b2a5cfd7aecf193');
+    xhttp.setRequestHeader('Authorization', pexelKey);
     xhttp.send();
 });
 
@@ -183,7 +186,7 @@ window.addEventListener('scroll', () => {
     var searchValue = document.querySelector('#search-bar').value;
 
     xhttp.open("GET", `https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=15`, true);
-    xhttp.setRequestHeader('Authorization', '563492ad6f91700001000001161560f93ba9468a8b2a5cfd7aecf193');
+    xhttp.setRequestHeader('Authorization', pexelKey);
     xhttp.send();
     }
 }, {
@@ -219,7 +222,7 @@ searchForm.addEventListener('submit', function(e) {
         var searchValue = document.querySelector('#search-bar').value;
 
         xhr.open("GET", `https://wordsapiv1.p.rapidapi.com/words/${searchValue}/typeOf`);
-        xhr.setRequestHeader("X-RapidAPI-Key", "cbf93f50c0mshe3f948be30aeef0p110453jsn29d15e377c7a");
+        xhr.setRequestHeader("X-RapidAPI-Key", wordsKey);
         xhr.setRequestHeader("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
 
         xhr.send(data);
