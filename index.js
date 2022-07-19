@@ -1,4 +1,4 @@
-//
+// 
 var pexelKey = config.pexel_key;
 var wordsKey = config.words_key;
 
@@ -12,19 +12,13 @@ searchForm.addEventListener('submit', function(e) {
         if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(xhttp.responseText);
         var photos = data.photos;
-        document.querySelector('.hero').style.display = 'none';
-        document.querySelector('.grid-container').style.display = 'block';
-        document.querySelector('.logo').style.filter = 'brightness(100%)';
-        document.querySelector('nav').style.borderBottom = '1px solid #f4f4f4';
-        document.querySelector('nav').style.backgroundColor = 'white';
-        // document.getElementsByClassName('down-carrot').style.filter = 'invert(94%) sepia(6%) saturate(18%) hue-rotate(325deg) brightness(83%) contrast(88%)';
+        hero.style.display = 'none';
+        photoGrid.style.display = 'block';
+        lightNav();
 
-
-        var randomNumPhotos = Math.random()*100;
-        randomNumPhotos = randomNumPhotos.toFixed(1);
         var photoNum = document.querySelector('.random-photo-num');
         if (photos.length > 0) {
-            photoNum.textContent = `${randomNumPhotos}k`;
+            photoNum.textContent = `${randomNum()}k`;
         } else {
             photoNum.textContent = `0`;
         }
@@ -235,7 +229,6 @@ function rootElementClicked(event) {
     event.preventDefault();
     var searchValue = document.querySelector('#search-bar');
     searchValue.value = event.target.textContent;
-    console.log(searchValue.value);
     searchForm.requestSubmit(); 
   }
 
@@ -257,29 +250,66 @@ filters.addEventListener('click', function() {
     }
 });
 
-const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuBtn = document.querySelector('.mobile-menu');
 const cancelBtn = document.querySelector('.cancel');
 const nav = document.querySelector('nav');
 const logo = document.querySelector('.logo');
 const photoGrid = document.querySelector('.grid-container');
 const mobileMenuOptions = document.querySelector('.mobile-menu-options');
-const bell = document.querySelector('.bell'); 
-mobileMenu.addEventListener('click', function() {
-    mobileMenu.style.display = 'none';
-    cancelBtn.style.display = 'block';
-    nav.style.backgroundColor = 'black';
-    nav.style.borderColor = 'hsla(0,0%,100%,.2)';
-    logo.src = 'images/PicHunter-logo-black.png';
-    photoGrid.style.display = 'none';
+const bell = document.querySelector('.bell');
+const hero = document.querySelector('.hero');
+const downCarrot = document.getElementsByClassName('down-carrot');
+
+
+
+mobileMenuBtn.addEventListener('click', function() {
     mobileMenuOptions.style.display = 'block';
-    bell.style.filter = 'invert(1)';
+    photoGrid.style.display = 'none';
+    darkNav();
 })
+
 cancelBtn.addEventListener('click', function() {
-    cancelBtn.style.display = 'none';
-    mobileMenu.style.display = 'block';
-    nav.style.backgroundColor = 'white';
-    logo.src = 'images/PicHunter-logo.png';
-    photoGrid.style.display = 'block';
     mobileMenuOptions.style.display = 'none';
-    bell.style.filter = 'invert(0)';
+    if (window.getComputedStyle(hero).display === 'block') {
+        transparentNav();
+    } else {
+        lightNav();
+        photoGrid.style.display = 'block';
+    }
 })
+
+function darkNav() {
+    cancelBtn.style.display = 'block';
+    mobileMenuBtn.style.display = 'none';
+    nav.style.backgroundColor = 'black';
+    nav.style.borderBottomColor = 'hsla(0,0%,100%,.2)';
+    logo.src = 'images/PicHunter-logo-black.png';
+    bell.style.filter = 'invert(1)';
+    downCarrot[1].style.filter = 'invert(1)';
+}
+
+function lightNav() {
+    cancelBtn.style.display = 'none';
+    mobileMenuBtn.style.display = 'block';
+    nav.style.backgroundColor = 'white';
+    nav.style.borderBottomColor = '#f4f4f4';
+    logo.src = 'images/PicHunter-logo.png';
+    logo.style.filter = 'brightness(100%)';
+    bell.style.filter = 'invert(0)';
+    downCarrot[1].style.filter = 'invert(0)';
+}
+
+function transparentNav() {
+    cancelBtn.style.display = 'none';
+    mobileMenuBtn.style.display = 'block';
+    nav.style.backgroundColor = 'transparent';
+    nav.style.borderBottomColor = 'transparent';
+    logo.src = 'images/PicHunter-logo.png';
+    bell.style.filter = 'invert(0)';
+    downCarrot[1].style.filter = 'invert(0)';
+}
+
+function randomNum() {
+    var randomNumPhotos = Math.random()*100;
+    return randomNumPhotos.toFixed(1);
+}
