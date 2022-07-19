@@ -1,8 +1,10 @@
 // api keys
 const pexelKey = config.pexel_key;
 const wordsKey = config.words_key;
+const randomWordKey = config.randomWord_key;
 
 // constants used in logic
+const body = document.querySelector('body');
 const relatedBtnsContainer = document.querySelector('.related-btns-container');
 const filters = document.querySelector('.filters');
 const filterDropdown = document.querySelector('.filter-dropdown');
@@ -18,6 +20,7 @@ const hero = document.querySelector('.hero');
 const downCarrot = document.getElementsByClassName('down-carrot');
 const grid = document.querySelector('.grid');
 const searchForm = document.querySelector('#search-form');
+const randomWords = document.querySelector('.random-words');
 
 let photoNum = document.querySelector('.random-photo-num');
 let currentPage = 1;
@@ -190,15 +193,41 @@ window.addEventListener('scroll', () => {
     passive: true
 });
 
+// API GET request to random-words api to render random words on initial load
+window.addEventListener('load', function() {
+    console.log('window loaded')
+    const data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            var words = JSON.parse(this.responseText);
+            words.forEach(function(word) {
+                var wordBtn = document.createElement('div');
+                wordBtn.classList.add('word');
+                wordBtn.innerHTML = word;
+                wordBtn.style.borderColor = 'white';
+                randomWords.appendChild(wordBtn);
+            })
+        }
+    });
+
+    xhr.open("GET", "https://random-words5.p.rapidapi.com/getMultipleRandom?count=15");
+    xhr.setRequestHeader("X-RapidAPI-Key", randomWordKey);
+    xhr.setRequestHeader("X-RapidAPI-Host", "random-words5.p.rapidapi.com");
+    xhr.send(data);
+})
+
 // API GET request to words api to render related words after every search
 searchForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const data = null;
         const xhr = new XMLHttpRequest();
         xhr.withCredentials = true;
-        var wordsContainer = document.querySelector('.related-btns-container');
-        wordsContainer.style.display = 'flex';
-        wordsContainer.innerHTML = '';
+        
+        relatedBtnsContainer.style.display = 'flex';
+        relatedBtnsContainer.innerHTML = '';
         var galleryTitle = document.querySelector('.gallery-title');
         galleryTitle.style.paddingTop = '25px';
         xhr.addEventListener("readystatechange", function () {
@@ -209,7 +238,7 @@ searchForm.addEventListener('submit', function(e) {
                     var wordBtn = document.createElement('div');
                     wordBtn.classList.add('word');
                     wordBtn.innerHTML = word;
-                    wordsContainer.appendChild(wordBtn);
+                    relatedBtnsContainer.appendChild(wordBtn);
                 })
             }
         });
@@ -218,6 +247,14 @@ searchForm.addEventListener('submit', function(e) {
         xhr.setRequestHeader("X-RapidAPI-Key", wordsKey);
         xhr.setRequestHeader("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
         xhr.send(data);
+});
+
+// event listener to search random word when clicked
+randomWords.addEventListener('click', function(event) {
+    event.preventDefault();
+    var searchValue = document.querySelector('#search-bar');
+    searchValue.value = event.target.textContent;
+    searchForm.requestSubmit(); 
 });
 
 // event listener to search related word when clicked
