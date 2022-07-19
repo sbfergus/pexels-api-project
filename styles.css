@@ -51,7 +51,7 @@ nav {
 .logo {
     width: 60px;
     padding: 5px;
-    
+    filter: brightness(0%);
 }
 
 form {
