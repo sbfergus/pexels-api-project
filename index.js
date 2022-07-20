@@ -27,6 +27,7 @@ let currentPage = 1;
 
 // API GET request to Pexels Api to render photos based on search input
 // 30 photos will be rendered initially, unless the given search has less than 30
+let maxNumOfPicsRendered = 30;
 searchForm.addEventListener('submit', function(e) {
     e.preventDefault();
     var xhttp = new XMLHttpRequest();
@@ -34,22 +35,26 @@ searchForm.addEventListener('submit', function(e) {
         if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(xhttp.responseText);
         var photos = data.photos;
+        // console.log(photos[0].naturalWidth);
         hero.style.display = 'none';
         photoGrid.style.display = 'block';
         lightNav();
-        if (photos.length > 0) {
-            photoNum.textContent = `${randomNum()}k`;
+        if (photos.length === 0) {
+            photoNum.textContent = 0;
+        } else if (photos.length < 30) {
+            photoNum.textContent = `${photos.length}`;
         } else {
-            photoNum.textContent = `0`;
+            photoNum.textContent = `${randomNum()}k`;
         }
         currentPage++;
         grid.innerHTML = '';
         photos.forEach(function(pic) {
+            console.log(pic);
                 var picture = document.createElement('div');
                 picture.classList.add('grid-item');
                 picture.innerHTML = `
                     <a href="${pic.url}">
-                        <img src="${pic.src.large}" alt="${pic.alt}" width=400>
+                        <img src="${pic.src.large}" alt="${pic.alt}" data-orient="${orient(pic)}" width=400>
                     </a>
                     <div class="pic-hover-info">
 
@@ -83,7 +88,7 @@ searchForm.addEventListener('submit', function(e) {
                     </div>
                 `;
                 picture.addEventListener('mouseover', function() {
-                        this.children[1].classList.add('active');
+                    this.children[1].classList.add('active');
                 });
                 picture.addEventListener('mouseout', function() {
                     this.children[1].classList.remove('active');
@@ -106,7 +111,7 @@ searchForm.addEventListener('submit', function(e) {
     var searchName = document.querySelector('#search-name');
     searchName.textContent = searchValue;
     searchName.style.textTransform = "capitalize";
-    xhttp.open("GET", `https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=30`, true);
+    xhttp.open("GET", `https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=${maxNumOfPicsRendered}`, true);
     xhttp.setRequestHeader('Authorization', pexelKey);
     xhttp.send();
 });
@@ -337,4 +342,9 @@ function transparentNav() {
 function randomNum() {
     var randomNumPhotos = Math.random()*100;
     return randomNumPhotos.toFixed(1);
+}
+
+// function to classify if image is horizontal or vertical orientation
+function orient(image) {
+    return (image.width > image.height)? 'horizontal' : 'vertical'
 }
