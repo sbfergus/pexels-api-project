@@ -21,7 +21,8 @@ const downCarrot = document.getElementsByClassName('down-carrot');
 const grid = document.querySelector('.grid');
 const searchForm = document.querySelector('#search-form');
 const randomWords = document.querySelector('.random-words');
-
+const orientSelect = document.querySelector('#orientations').options.selectedIndex;
+// console.log(orientSelect);
 let photoNum = document.querySelector('.random-photo-num');
 let currentPage = 1;
 
@@ -49,12 +50,12 @@ searchForm.addEventListener('submit', function(e) {
         currentPage++;
         grid.innerHTML = '';
         photos.forEach(function(pic) {
-            console.log(pic);
+            //console.log(pic);
                 var picture = document.createElement('div');
                 picture.classList.add('grid-item');
                 picture.innerHTML = `
                     <a href="${pic.url}">
-                        <img src="${pic.src.large}" alt="${pic.alt}" data-orient="${orient(pic)}" width=400>
+                        <img src="${pic.src.large}" alt="${pic.alt}" data-orient="${orient(pic)}" class="renderedPic" width=400>
                     </a>
                     <div class="pic-hover-info">
 
@@ -119,6 +120,7 @@ searchForm.addEventListener('submit', function(e) {
 // API GET request to Pexels Api to render more photos when user scrolls to the bottom
 // maxium 90 pictures total will be rendered if user continues to scroll to the bottom
 window.addEventListener('scroll', () => {
+    // console.log(orientSelect);
     const {
         scrollTop,
         scrollHeight,
@@ -136,7 +138,7 @@ window.addEventListener('scroll', () => {
                     picture.classList.add('grid-item');
                     picture.innerHTML = `
                         <a href="${pic.url}">
-                            <img src="${pic.src.large}" alt="${pic.alt}" width=400>
+                            <img src="${pic.src.large}" alt="${pic.alt}" data-orient="${orient(pic)}" class="renderedPic" width=400>
                         </a>
                         <div class="pic-hover-info">
 
@@ -346,5 +348,47 @@ function randomNum() {
 
 // function to classify if image is horizontal or vertical orientation
 function orient(image) {
-    return (image.width > image.height)? 'horizontal' : 'vertical'
+    return (image.width > image.height)? 'Horizontal' : 'Vertical'
+}
+
+function filterOrient(sel) {
+    let pics = document.getElementsByClassName('renderedPic');
+    let selectedOrient = sel.options[sel.selectedIndex].text;
+    for (pic of pics) {
+        if (selectedOrient === 'All Orientations') {
+            pic.style.display = 'block';
+            var msnry = new Masonry( grid, {
+                itemSelector: '.grid-item',
+                fitWidth: true,
+                gutter: 25
+            });
+            msnry.reloadItems()
+        } else if (pic.dataset.orient === selectedOrient) {
+            pic.style.display = 'block';
+            if (pic.dataset.orient === 'Vertical') {
+                pic.parentElement.parentElement.classList.add('vert');
+                var msnry = new Masonry( grid, {
+                    itemSelector: '.vert',
+                    fitWidth: true,
+                    gutter: 25
+                });
+                msnry.reloadItems()
+            } else {
+                pic.parentElement.parentElement.classList.add('horiz');
+                var msnry = new Masonry( grid, {
+                    itemSelector: '.horiz',
+                    fitWidth: true,
+                    gutter: 25
+                });
+                msnry.reloadItems()
+            }
+    
+        } else {
+            pic.style.display = 'none';
+        }
+    }
+}
+
+function filterSize() {
+    console.log('fired size filter')
 }
