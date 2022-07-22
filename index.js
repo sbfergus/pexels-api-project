@@ -24,7 +24,7 @@ const randomWords = document.querySelector('.random-words');
 const orientSelect = document.querySelector('#orientations');
 
 let photoNum = document.querySelector('.random-photo-num');
-let currentPage = 3;
+let currentPage = 2;
 
 // API GET request to Pexels Api to render photos based on search input
 // 30 photos will be rendered initially, unless the given search has less than 30
@@ -123,7 +123,7 @@ searchForm.addEventListener('submit', function(e) {
 
 // API GET request to Pexels Api to render more photos when user scrolls to the bottom
 // maxium 90 pictures total will be rendered if user continues to scroll to the bottom
-window.addEventListener('scroll', throttle(scollListener, 100) );
+window.addEventListener('scroll', throttle(scollListener, 300) );
 
 // API GET request to random-words api to render random words on initial load
 window.addEventListener('load', function() {
@@ -301,6 +301,7 @@ function filterOrient() {
         });
         msnry.reloadItems()
     } else {
+        pic.style.display = 'block';
         var msnry = new Masonry( grid, {
             itemSelector: '.grid-item',
             fitWidth: true,
@@ -308,6 +309,34 @@ function filterOrient() {
         });
         msnry.reloadItems()
     }
+    // if (selectedOrient === 'horiz') {
+    //     for (pic of pics) {
+    //         (pic.classList.contains('horiz'))? pic.style.display = 'block' : pic.style.display = 'none';
+    //     }
+    //     var msnry = new Masonry( grid, {
+    //         itemSelector: '.horiz',
+    //         fitWidth: true,
+    //         gutter: 25
+    //     });
+    //     msnry.reloadItems()
+    // } else if (selectedOrient === 'vert') {
+    //     for (pic of pics) {
+    //         (pic.classList.contains('vert'))? pic.style.display = 'block' : pic.style.display = 'none';
+    //     }
+    //     var msnry = new Masonry( grid, {
+    //         itemSelector: '.vert',
+    //         fitWidth: true,
+    //         gutter: 25
+    //     });
+    //     msnry.reloadItems()
+    // } else {
+    //     var msnry = new Masonry( grid, {
+    //         itemSelector: '.grid-item',
+    //         fitWidth: true,
+    //         gutter: 25
+    //     });
+    //     msnry.reloadItems()
+    // }
     // for (pic of pics) {
     //     if (selectedOrient === 'All Orientations') {
     //         pic.style.display = 'block';
@@ -345,10 +374,11 @@ function filterSize() {
     console.log('fired size filter')
 }
 
+// function to render more photos when scrolling to the bottom of the page
 function scollListener() {
     // console.log(orientSelect);
     const { scrollTop, scrollHeight, clientHeight} = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 1 && currentPage < 7) {
+    if (scrollTop + clientHeight >= scrollHeight - 5 && currentPage < 5) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -424,12 +454,14 @@ function scollListener() {
         };
     };
     var searchValue = document.querySelector('#search-bar').value;
-    xhttp.open("GET", `https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=15`, true);
+    console.log(`https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=30`)
+    xhttp.open("GET", `https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=30`, true);
     xhttp.setRequestHeader('Authorization', pexelKey);
     xhttp.send();
     }
 }
 
+// function to timeout scroll event from firing 
 function throttle(fn, wait) {
     var time = Date.now();
     return function() {
