@@ -21,10 +21,10 @@ const downCarrot = document.getElementsByClassName('down-carrot');
 const grid = document.querySelector('.grid');
 const searchForm = document.querySelector('#search-form');
 const randomWords = document.querySelector('.random-words');
-const orientSelect = document.querySelector('#orientations').options.selectedIndex;
-// console.log(orientSelect);
+const orientSelect = document.querySelector('#orientations');
+
 let photoNum = document.querySelector('.random-photo-num');
-let currentPage = 1;
+let currentPage = 3;
 
 // API GET request to Pexels Api to render photos based on search input
 // 30 photos will be rendered initially, unless the given search has less than 30
@@ -36,6 +36,7 @@ searchForm.addEventListener('submit', function(e) {
         if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(xhttp.responseText);
         var photos = data.photos;
+        console.log(photos);
         // console.log(photos[0].naturalWidth);
         hero.style.display = 'none';
         photoGrid.style.display = 'block';
@@ -51,11 +52,13 @@ searchForm.addEventListener('submit', function(e) {
         grid.innerHTML = '';
         photos.forEach(function(pic) {
             //console.log(pic);
+                
                 var picture = document.createElement('div');
                 picture.classList.add('grid-item');
+                
                 picture.innerHTML = `
                     <a href="${pic.url}">
-                        <img src="${pic.src.large}" alt="${pic.alt}" data-orient="${orient(pic)}" class="renderedPic" width=400>
+                        <img src="${pic.src.large}" alt="${pic.alt}" width=400>
                     </a>
                     <div class="pic-hover-info">
 
@@ -88,6 +91,7 @@ searchForm.addEventListener('submit', function(e) {
 
                     </div>
                 `;
+                (pic.width > pic.height)? picture.classList.add('horiz') : picture.classList.add('vert');
                 picture.addEventListener('mouseover', function() {
                     this.children[1].classList.add('active');
                 });
@@ -121,24 +125,21 @@ searchForm.addEventListener('submit', function(e) {
 // maxium 90 pictures total will be rendered if user continues to scroll to the bottom
 window.addEventListener('scroll', () => {
     // console.log(orientSelect);
-    const {
-        scrollTop,
-        scrollHeight,
-        clientHeight
-    } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 1 && currentPage < 6) {
+    const { scrollTop, scrollHeight, clientHeight} = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 1 && currentPage < 7) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(xhttp.responseText);
             var photos = data.photos;
+            console.log(photos);
             currentPage++;
             photos.forEach(function(pic) {
                     var picture = document.createElement('div');
                     picture.classList.add('grid-item');
                     picture.innerHTML = `
                         <a href="${pic.url}">
-                            <img src="${pic.src.large}" alt="${pic.alt}" data-orient="${orient(pic)}" class="renderedPic" width=400>
+                            <img src="${pic.src.large}" alt="${pic.alt}" width=400>
                         </a>
                         <div class="pic-hover-info">
 
@@ -171,16 +172,25 @@ window.addEventListener('scroll', () => {
 
                         </div>
                     `;
+                    (pic.width > pic.height)? picture.classList.add('horiz') : picture.classList.add('vert');
                     picture.addEventListener('mouseover', function() {
                             this.children[1].classList.add('active');
                     });
                     picture.addEventListener('mouseout', function() {
                         this.children[1].classList.remove('active');
                     });
-    
+            // if (orientSelect.value === 'vert') {
+            //     (picture.classList.contains('vert'))? grid.appendChild(picture) : '';
+            // } else if (orientSelect.value === 'horiz') {
+            //     (picture.classList.contains('horiz'))? grid.appendChild(picture) : '';
+            // } else {
+            //     grid.appendChild(picture);
+            // }
             grid.appendChild(picture);
                     
             });
+            // console.log(orientSelect.value);
+            // filterOrient();
             var msnry = new Masonry( grid, {
                 itemSelector: '.grid-item',
                 fitWidth: true,
@@ -196,8 +206,6 @@ window.addEventListener('scroll', () => {
     xhttp.setRequestHeader('Authorization', pexelKey);
     xhttp.send();
     }
-}, {
-    passive: true
 });
 
 // API GET request to random-words api to render random words on initial load
@@ -351,44 +359,76 @@ function orient(image) {
     return (image.width > image.height)? 'Horizontal' : 'Vertical'
 }
 
-function filterOrient(sel) {
-    let pics = document.getElementsByClassName('renderedPic');
-    let selectedOrient = sel.options[sel.selectedIndex].text;
-    for (pic of pics) {
-        if (selectedOrient === 'All Orientations') {
-            pic.style.display = 'block';
-            var msnry = new Masonry( grid, {
-                itemSelector: '.grid-item',
-                fitWidth: true,
-                gutter: 25
-            });
-            msnry.reloadItems()
-        } else if (pic.dataset.orient === selectedOrient) {
-            pic.style.display = 'block';
-            if (pic.dataset.orient === 'Vertical') {
-                pic.parentElement.parentElement.classList.add('vert');
-                var msnry = new Masonry( grid, {
-                    itemSelector: '.vert',
-                    fitWidth: true,
-                    gutter: 25
-                });
-                msnry.reloadItems()
-            } else {
-                pic.parentElement.parentElement.classList.add('horiz');
-                var msnry = new Masonry( grid, {
-                    itemSelector: '.horiz',
-                    fitWidth: true,
-                    gutter: 25
-                });
-                msnry.reloadItems()
-            }
-    
-        } else {
-            pic.style.display = 'none';
+function filterOrient() {
+    let selectedOrient = orientSelect.value;
+    let pics = document.getElementsByClassName('grid-item');
+    console.log(selectedOrient);
+    if (selectedOrient === 'horiz') {
+        for (pic of pics) {
+            (pic.classList.contains('horiz'))? pic.style.display = 'block' : pic.style.display = 'none';
         }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.horiz',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else if (selectedOrient === 'vert') {
+        for (pic of pics) {
+            (pic.classList.contains('vert'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.vert',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else {
+        var msnry = new Masonry( grid, {
+            itemSelector: '.grid-item',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
     }
+    // for (pic of pics) {
+    //     if (selectedOrient === 'All Orientations') {
+    //         pic.style.display = 'block';
+    //         var msnry = new Masonry( grid, {
+    //             itemSelector: '.grid-item',
+    //             fitWidth: true,
+    //             gutter: 25
+    //         });
+    //         msnry.reloadItems()
+    //     } else if (pic.dataset.orient === selectedOrient) {
+    //         pic.style.display = 'block';
+    //         if (pic.dataset.orient === 'Vertical') {
+    //             var msnry = new Masonry( grid, {
+    //                 itemSelector: '.vert',
+    //                 fitWidth: true,
+    //                 gutter: 25
+    //             });
+    //             msnry.reloadItems()
+    //         } else {
+    //             var msnry = new Masonry( grid, {
+    //                 itemSelector: '.horiz',
+    //                 fitWidth: true,
+    //                 gutter: 25
+    //             });
+    //             msnry.reloadItems()
+    //         }
+    
+    //     } else {
+    //         pic.style.display = 'none';
+    //     }
+    // }
 }
 
 function filterSize() {
     console.log('fired size filter')
 }
+
+// function scollListener() {
+//     setTimeout(, 1200)
+// }
+
