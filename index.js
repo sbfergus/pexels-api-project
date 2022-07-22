@@ -123,90 +123,7 @@ searchForm.addEventListener('submit', function(e) {
 
 // API GET request to Pexels Api to render more photos when user scrolls to the bottom
 // maxium 90 pictures total will be rendered if user continues to scroll to the bottom
-window.addEventListener('scroll', () => {
-    // console.log(orientSelect);
-    const { scrollTop, scrollHeight, clientHeight} = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 1 && currentPage < 7) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(xhttp.responseText);
-            var photos = data.photos;
-            console.log(photos);
-            currentPage++;
-            photos.forEach(function(pic) {
-                    var picture = document.createElement('div');
-                    picture.classList.add('grid-item');
-                    picture.innerHTML = `
-                        <a href="${pic.url}">
-                            <img src="${pic.src.large}" alt="${pic.alt}" width=400>
-                        </a>
-                        <div class="pic-hover-info">
-
-                            <div class="collect-like">
-                                <div class="pic-top-flex">
-                                    <img class="icon bookmark" 
-                                        src="images/bookmark.png"
-                                        alt="collect">
-                                    <img class="icon heart"
-                                        src="images/heart.png"
-                                        alt="like">
-                                </div>
-                            </div>
-
-                            <div class="artist-name">
-                                <div class="pic-bottom-flex">
-                                    <a href="${pic.photographer_url}">
-                                        <div class="artist-flex">
-                                            <img class="avatar" 
-                                                    src="https://images.pexels.com/lib/avatars/orange.png?w=40&h=40&fit=crop&dpr=1" 
-                                                    alt="artist avatar photo">
-                                            <h5>${pic.photographer}</h5>
-                                        </div>
-                                    </a>
-                                    <img class="icon download"
-                                        src="images/download-icon.png"
-                                        alt="download">
-                                </div>    
-                            </div>
-
-                        </div>
-                    `;
-                    (pic.width > pic.height)? picture.classList.add('horiz') : picture.classList.add('vert');
-                    picture.addEventListener('mouseover', function() {
-                            this.children[1].classList.add('active');
-                    });
-                    picture.addEventListener('mouseout', function() {
-                        this.children[1].classList.remove('active');
-                    });
-            // if (orientSelect.value === 'vert') {
-            //     (picture.classList.contains('vert'))? grid.appendChild(picture) : '';
-            // } else if (orientSelect.value === 'horiz') {
-            //     (picture.classList.contains('horiz'))? grid.appendChild(picture) : '';
-            // } else {
-            //     grid.appendChild(picture);
-            // }
-            grid.appendChild(picture);
-                    
-            });
-            // console.log(orientSelect.value);
-            // filterOrient();
-            var msnry = new Masonry( grid, {
-                itemSelector: '.grid-item',
-                fitWidth: true,
-                gutter: 25
-            });
-            imagesLoaded( grid ).on( 'progress', function() {
-                msnry.layout();
-            });
-        };
-    };
-    var searchValue = document.querySelector('#search-bar').value;
-    xhttp.open("GET", `https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=15`, true);
-    xhttp.setRequestHeader('Authorization', pexelKey);
-    xhttp.send();
-    }
-});
+window.addEventListener('scroll', throttle(scollListener, 100) );
 
 // API GET request to random-words api to render random words on initial load
 window.addEventListener('load', function() {
@@ -428,7 +345,97 @@ function filterSize() {
     console.log('fired size filter')
 }
 
-// function scollListener() {
-//     setTimeout(, 1200)
-// }
+function scollListener() {
+    // console.log(orientSelect);
+    const { scrollTop, scrollHeight, clientHeight} = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 1 && currentPage < 7) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(xhttp.responseText);
+            var photos = data.photos;
+            console.log(photos);
+            currentPage++;
+            photos.forEach(function(pic) {
+                    var picture = document.createElement('div');
+                    picture.classList.add('grid-item');
+                    picture.innerHTML = `
+                        <a href="${pic.url}">
+                            <img src="${pic.src.large}" alt="${pic.alt}" width=400>
+                        </a>
+                        <div class="pic-hover-info">
 
+                            <div class="collect-like">
+                                <div class="pic-top-flex">
+                                    <img class="icon bookmark" 
+                                        src="images/bookmark.png"
+                                        alt="collect">
+                                    <img class="icon heart"
+                                        src="images/heart.png"
+                                        alt="like">
+                                </div>
+                            </div>
+
+                            <div class="artist-name">
+                                <div class="pic-bottom-flex">
+                                    <a href="${pic.photographer_url}">
+                                        <div class="artist-flex">
+                                            <img class="avatar" 
+                                                    src="https://images.pexels.com/lib/avatars/orange.png?w=40&h=40&fit=crop&dpr=1" 
+                                                    alt="artist avatar photo">
+                                            <h5>${pic.photographer}</h5>
+                                        </div>
+                                    </a>
+                                    <img class="icon download"
+                                        src="images/download-icon.png"
+                                        alt="download">
+                                </div>    
+                            </div>
+
+                        </div>
+                    `;
+                    (pic.width > pic.height)? picture.classList.add('horiz') : picture.classList.add('vert');
+                    picture.addEventListener('mouseover', function() {
+                            this.children[1].classList.add('active');
+                    });
+                    picture.addEventListener('mouseout', function() {
+                        this.children[1].classList.remove('active');
+                    });
+            // if (orientSelect.value === 'vert') {
+            //     (picture.classList.contains('vert'))? grid.appendChild(picture) : '';
+            // } else if (orientSelect.value === 'horiz') {
+            //     (picture.classList.contains('horiz'))? grid.appendChild(picture) : '';
+            // } else {
+            //     grid.appendChild(picture);
+            // }
+            grid.appendChild(picture);
+                    
+            });
+            // console.log(orientSelect.value);
+            // filterOrient();
+            var msnry = new Masonry( grid, {
+                itemSelector: '.grid-item',
+                fitWidth: true,
+                gutter: 25
+            });
+            imagesLoaded( grid ).on( 'progress', function() {
+                msnry.layout();
+            });
+        };
+    };
+    var searchValue = document.querySelector('#search-bar').value;
+    xhttp.open("GET", `https://api.pexels.com/v1/search?query=${searchValue}&page=${currentPage}&per_page=15`, true);
+    xhttp.setRequestHeader('Authorization', pexelKey);
+    xhttp.send();
+    }
+}
+
+function throttle(fn, wait) {
+    var time = Date.now();
+    return function() {
+      if ((time + wait - Date.now()) < 0) {
+        fn();
+        time = Date.now();
+      }
+    }
+  }
