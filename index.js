@@ -301,7 +301,9 @@ function filterOrient() {
         });
         msnry.reloadItems()
     } else {
-        pic.style.display = 'block';
+        for (pic of pics) {
+            (pic.classList.contains('grid-item'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
         var msnry = new Masonry( grid, {
             itemSelector: '.grid-item',
             fitWidth: true,
