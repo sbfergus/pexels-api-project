@@ -138,7 +138,6 @@ searchForm.addEventListener('submit', function(e) {
 });
 
 // API GET request to Pexels Api to render more photos when user scrolls to the bottom
-// maxium 90 pictures total will be rendered if user continues to scroll to the bottom
 window.addEventListener('scroll', throttle(scollListener, 300) );
 
 // API GET request to random-words api to render random words on initial load
@@ -168,34 +167,34 @@ window.addEventListener('scroll', throttle(scollListener, 300) );
 // })
 
 // API GET request to words api to render related words after every search
-// searchForm.addEventListener('submit', function(e) {
-//         e.preventDefault();
-//         const data = null;
-//         const xhr = new XMLHttpRequest();
-//         xhr.withCredentials = true;
+searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
         
-//         relatedBtnsContainer.style.display = 'flex';
-//         relatedBtnsContainer.innerHTML = '';
-//         var galleryTitle = document.querySelector('.gallery-title');
-//         galleryTitle.style.paddingTop = '25px';
-//         xhr.addEventListener("readystatechange", function () {
-//             if (this.readyState === this.DONE) {
-//                 var words = JSON.parse(this.responseText);
-//                 var maxTenWords = words.typeOf.slice(0,15);
-//                 maxTenWords.forEach(function(word) {
-//                     var wordBtn = document.createElement('div');
-//                     wordBtn.classList.add('word');
-//                     wordBtn.innerHTML = word;
-//                     relatedBtnsContainer.appendChild(wordBtn);
-//                 })
-//             }
-//         });
-//         var searchValue = document.querySelector('#search-bar').value;
-//         xhr.open("GET", `https://wordsapiv1.p.rapidapi.com/words/${searchValue}/typeOf`);
-//         xhr.setRequestHeader("X-RapidAPI-Key", wordsKey);
-//         xhr.setRequestHeader("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
-//         xhr.send(data);
-// });
+        relatedBtnsContainer.style.display = 'flex';
+        relatedBtnsContainer.innerHTML = '';
+        var galleryTitle = document.querySelector('.gallery-title');
+        galleryTitle.style.paddingTop = '25px';
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                var words = JSON.parse(this.responseText);
+                var maxTenWords = words.typeOf.slice(0,15);
+                maxTenWords.forEach(function(word) {
+                    var wordBtn = document.createElement('div');
+                    wordBtn.classList.add('word');
+                    wordBtn.innerHTML = word;
+                    relatedBtnsContainer.appendChild(wordBtn);
+                })
+            }
+        });
+        var searchValue = document.querySelector('#search-bar').value;
+        xhr.open("GET", `https://wordsapiv1.p.rapidapi.com/words/${searchValue}/typeOf`);
+        xhr.setRequestHeader("X-RapidAPI-Key", wordsKey);
+        xhr.setRequestHeader("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
+        xhr.send(data);
+});
 
 // event listener to search random word when clicked
 randomWords.addEventListener('click', function(event) {
@@ -287,91 +286,7 @@ function randomNum() {
     return randomNumPhotos.toFixed(1);
 }
 
-// function to filter images diplayed based on selected orientation
-// function filterOrient() {
-//     let selectedOrient = orientSelect.value;
-//     let pics = document.getElementsByClassName('grid-item');
-//     if (selectedOrient === 'horiz') {
-//         for (pic of pics) {
-//             (pic.classList.contains('horiz'))? pic.style.display = 'block' : pic.style.display = 'none';
-//         }
-//         var msnry = new Masonry( grid, {
-//             itemSelector: '.horiz',
-//             fitWidth: true,
-//             gutter: 25
-//         });
-//         msnry.reloadItems()
-//     } else if (selectedOrient === 'vert') {
-//         for (pic of pics) {
-//             (pic.classList.contains('vert'))? pic.style.display = 'block' : pic.style.display = 'none';
-//         }
-//         var msnry = new Masonry( grid, {
-//             itemSelector: '.vert',
-//             fitWidth: true,
-//             gutter: 25
-//         });
-//         msnry.reloadItems()
-//     } else {
-//         for (pic of pics) {
-//             (pic.classList.contains('grid-item'))? pic.style.display = 'block' : pic.style.display = 'none';
-//         }
-//         var msnry = new Masonry( grid, {
-//             itemSelector: '.grid-item',
-//             fitWidth: true,
-//             gutter: 25
-//         });
-//         msnry.reloadItems()
-//     }
-// }
-
-// function to filter images diplayed based on selected size
-// function filterSize() {
-//     let selectedSize = sizeSelect.value;
-//     let pics = document.getElementsByClassName('grid-item');
-//     console.log(selectedSize);
-//     if (selectedSize === 'sm') {
-//         for (pic of pics) {
-//             (pic.classList.contains('sm'))? pic.style.display = 'block' : pic.style.display = 'none';
-//         }
-//         var msnry = new Masonry( grid, {
-//             itemSelector: '.sm',
-//             fitWidth: true,
-//             gutter: 25
-//         });
-//         msnry.reloadItems()
-//     } else if (selectedSize === 'md') {
-//         for (pic of pics) {
-//             (pic.classList.contains('md'))? pic.style.display = 'block' : pic.style.display = 'none';
-//         }
-//         var msnry = new Masonry( grid, {
-//             itemSelector: '.md',
-//             fitWidth: true,
-//             gutter: 25
-//         });
-//         msnry.reloadItems()
-//     } else if (selectedSize === 'lg') {
-//         for (pic of pics) {
-//             (pic.classList.contains('lg'))? pic.style.display = 'block' : pic.style.display = 'none';
-//         }
-//         var msnry = new Masonry( grid, {
-//             itemSelector: '.lg',
-//             fitWidth: true,
-//             gutter: 25
-//         });
-//         msnry.reloadItems()
-//     } else {
-//         for (pic of pics) {
-//             (pic.classList.contains('grid-item'))? pic.style.display = 'block' : pic.style.display = 'none';
-//         }
-//         var msnry = new Masonry( grid, {
-//             itemSelector: '.grid-item',
-//             fitWidth: true,
-//             gutter: 25
-//         });
-//         msnry.reloadItems()
-//     }
-// }
-
+// function to filter displayed images based on the combination of orientation and size selections
 function comboFilter() {
     let pics = document.getElementsByClassName('grid-item');
     let selectedOrient = orientSelect.value;
