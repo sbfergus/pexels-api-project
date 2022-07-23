@@ -22,6 +22,7 @@ const grid = document.querySelector('.grid');
 const searchForm = document.querySelector('#search-form');
 const randomWords = document.querySelector('.random-words');
 const orientSelect = document.querySelector('#orientations');
+const sizeSelect = document.querySelector('#sizes');
 
 let photoNum = document.querySelector('.random-photo-num');
 let currentPage = 2;
@@ -91,7 +92,22 @@ searchForm.addEventListener('submit', function(e) {
 
                     </div>
                 `;
-                (pic.width > pic.height)? picture.classList.add('horiz') : picture.classList.add('vert');
+                (pic.width > pic.height)? (picture.classList.add('horiz')) : (picture.classList.add('vert'));
+                
+                let largestDim;
+                if (pic.width > pic.height) {
+                    largestDim = pic.width;
+                } else {
+                    largestDim = pic.height;
+                }
+                if (largestDim > 4000) {
+                    picture.classList.add('lg');
+                } else if (largestDim >= 3000 && largestDim <= 4000) {
+                    picture.classList.add('md');
+                } else {
+                    picture.classList.add('sm');
+                }
+
                 picture.addEventListener('mouseover', function() {
                     this.children[1].classList.add('active');
                 });
@@ -265,21 +281,16 @@ function transparentNav() {
     downCarrot[1].style.filter = 'invert(0)';
 }
 
-// function to product random number in thousands, later pluged into 'photos' display after searching
+// function to produce random number in thousands, later pluged into 'photos' display after searching
 function randomNum() {
     var randomNumPhotos = Math.random()*100;
     return randomNumPhotos.toFixed(1);
 }
 
-// function to classify if image is horizontal or vertical orientation
-function orient(image) {
-    return (image.width > image.height)? 'Horizontal' : 'Vertical'
-}
-
+// function to filter images diplayed based on selected orientation
 function filterOrient() {
     let selectedOrient = orientSelect.value;
     let pics = document.getElementsByClassName('grid-item');
-    console.log(selectedOrient);
     if (selectedOrient === 'horiz') {
         for (pic of pics) {
             (pic.classList.contains('horiz'))? pic.style.display = 'block' : pic.style.display = 'none';
@@ -313,8 +324,11 @@ function filterOrient() {
     }
 }
 
+// function to filter images diplayed based on selected size
 function filterSize() {
-    console.log('fired size filter')
+    let selectedSize = sizeSelect.value;
+    let pics = document.getElementsByClassName('grid-item');
+    console.log(selectedSize);
 }
 
 // function to render more photos when scrolling to the bottom of the page
