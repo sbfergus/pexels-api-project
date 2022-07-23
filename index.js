@@ -288,10 +288,95 @@ function randomNum() {
 }
 
 // function to filter images diplayed based on selected orientation
-function filterOrient() {
-    let selectedOrient = orientSelect.value;
+// function filterOrient() {
+//     let selectedOrient = orientSelect.value;
+//     let pics = document.getElementsByClassName('grid-item');
+//     if (selectedOrient === 'horiz') {
+//         for (pic of pics) {
+//             (pic.classList.contains('horiz'))? pic.style.display = 'block' : pic.style.display = 'none';
+//         }
+//         var msnry = new Masonry( grid, {
+//             itemSelector: '.horiz',
+//             fitWidth: true,
+//             gutter: 25
+//         });
+//         msnry.reloadItems()
+//     } else if (selectedOrient === 'vert') {
+//         for (pic of pics) {
+//             (pic.classList.contains('vert'))? pic.style.display = 'block' : pic.style.display = 'none';
+//         }
+//         var msnry = new Masonry( grid, {
+//             itemSelector: '.vert',
+//             fitWidth: true,
+//             gutter: 25
+//         });
+//         msnry.reloadItems()
+//     } else {
+//         for (pic of pics) {
+//             (pic.classList.contains('grid-item'))? pic.style.display = 'block' : pic.style.display = 'none';
+//         }
+//         var msnry = new Masonry( grid, {
+//             itemSelector: '.grid-item',
+//             fitWidth: true,
+//             gutter: 25
+//         });
+//         msnry.reloadItems()
+//     }
+// }
+
+// function to filter images diplayed based on selected size
+// function filterSize() {
+//     let selectedSize = sizeSelect.value;
+//     let pics = document.getElementsByClassName('grid-item');
+//     console.log(selectedSize);
+//     if (selectedSize === 'sm') {
+//         for (pic of pics) {
+//             (pic.classList.contains('sm'))? pic.style.display = 'block' : pic.style.display = 'none';
+//         }
+//         var msnry = new Masonry( grid, {
+//             itemSelector: '.sm',
+//             fitWidth: true,
+//             gutter: 25
+//         });
+//         msnry.reloadItems()
+//     } else if (selectedSize === 'md') {
+//         for (pic of pics) {
+//             (pic.classList.contains('md'))? pic.style.display = 'block' : pic.style.display = 'none';
+//         }
+//         var msnry = new Masonry( grid, {
+//             itemSelector: '.md',
+//             fitWidth: true,
+//             gutter: 25
+//         });
+//         msnry.reloadItems()
+//     } else if (selectedSize === 'lg') {
+//         for (pic of pics) {
+//             (pic.classList.contains('lg'))? pic.style.display = 'block' : pic.style.display = 'none';
+//         }
+//         var msnry = new Masonry( grid, {
+//             itemSelector: '.lg',
+//             fitWidth: true,
+//             gutter: 25
+//         });
+//         msnry.reloadItems()
+//     } else {
+//         for (pic of pics) {
+//             (pic.classList.contains('grid-item'))? pic.style.display = 'block' : pic.style.display = 'none';
+//         }
+//         var msnry = new Masonry( grid, {
+//             itemSelector: '.grid-item',
+//             fitWidth: true,
+//             gutter: 25
+//         });
+//         msnry.reloadItems()
+//     }
+// }
+
+function comboFilter() {
     let pics = document.getElementsByClassName('grid-item');
-    if (selectedOrient === 'horiz') {
+    let selectedOrient = orientSelect.value;
+    let selectedSize = sizeSelect.value;
+    if (selectedOrient === 'horiz' && selectedSize === 'all') {
         for (pic of pics) {
             (pic.classList.contains('horiz'))? pic.style.display = 'block' : pic.style.display = 'none';
         }
@@ -301,7 +386,37 @@ function filterOrient() {
             gutter: 25
         });
         msnry.reloadItems()
-    } else if (selectedOrient === 'vert') {
+    } else if (selectedOrient === 'horiz' && selectedSize === 'sm') {
+        for (pic of pics) {
+            (pic.classList.contains('horiz') && pic.classList.contains('sm'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.horiz.sm',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else if (selectedOrient === 'horiz' && selectedSize === 'md') {
+        for (pic of pics) {
+            (pic.classList.contains('horiz') && pic.classList.contains('md'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.horiz.md',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else if (selectedOrient === 'horiz' && selectedSize === 'lg') {
+        for (pic of pics) {
+            (pic.classList.contains('horiz') && pic.classList.contains('lg'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.horiz.lg',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else if (selectedOrient === 'vert' && selectedSize === 'all') {
         for (pic of pics) {
             (pic.classList.contains('vert'))? pic.style.display = 'block' : pic.style.display = 'none';
         }
@@ -311,25 +426,37 @@ function filterOrient() {
             gutter: 25
         });
         msnry.reloadItems()
-    } else {
+    } else if (selectedOrient === 'vert' && selectedSize === 'sm') {
         for (pic of pics) {
-            (pic.classList.contains('grid-item'))? pic.style.display = 'block' : pic.style.display = 'none';
+            (pic.classList.contains('vert') && pic.classList.contains('sm'))? pic.style.display = 'block' : pic.style.display = 'none';
         }
         var msnry = new Masonry( grid, {
-            itemSelector: '.grid-item',
+            itemSelector: '.vert.sm',
             fitWidth: true,
             gutter: 25
         });
         msnry.reloadItems()
-    }
-}
-
-// function to filter images diplayed based on selected size
-function filterSize() {
-    let selectedSize = sizeSelect.value;
-    let pics = document.getElementsByClassName('grid-item');
-    console.log(selectedSize);
-    if (selectedSize === 'sm') {
+    } else if (selectedOrient === 'vert' && selectedSize === 'md') {
+        for (pic of pics) {
+            (pic.classList.contains('vert') && pic.classList.contains('md'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.vert.md',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else if (selectedOrient === 'vert' && selectedSize === 'lg') {
+        for (pic of pics) {
+            (pic.classList.contains('vert') && pic.classList.contains('lg'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.vert.lg',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else if (selectedOrient === 'all' && selectedSize === 'sm') {
         for (pic of pics) {
             (pic.classList.contains('sm'))? pic.style.display = 'block' : pic.style.display = 'none';
         }
@@ -339,7 +466,7 @@ function filterSize() {
             gutter: 25
         });
         msnry.reloadItems()
-    } else if (selectedSize === 'md') {
+    } else if (selectedOrient === 'all' && selectedSize === 'md') {
         for (pic of pics) {
             (pic.classList.contains('md'))? pic.style.display = 'block' : pic.style.display = 'none';
         }
@@ -349,7 +476,7 @@ function filterSize() {
             gutter: 25
         });
         msnry.reloadItems()
-    } else if (selectedSize === 'lg') {
+    } else if (selectedOrient === 'all' && selectedSize === 'lg') {
         for (pic of pics) {
             (pic.classList.contains('lg'))? pic.style.display = 'block' : pic.style.display = 'none';
         }
@@ -445,7 +572,7 @@ function scollListener() {
                     });
             grid.appendChild(picture);  
             });
-            filterOrient();
+            comboFilter();
         };
     };
     var searchValue = document.querySelector('#search-bar').value;
