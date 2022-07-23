@@ -126,60 +126,60 @@ searchForm.addEventListener('submit', function(e) {
 window.addEventListener('scroll', throttle(scollListener, 300) );
 
 // API GET request to random-words api to render random words on initial load
-window.addEventListener('load', function() {
-    console.log('window loaded')
-    const data = null;
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+// window.addEventListener('load', function() {
+//     console.log('window loaded')
+//     const data = null;
+//     const xhr = new XMLHttpRequest();
+//     xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === this.DONE) {
-            var words = JSON.parse(this.responseText);
-            words.forEach(function(word) {
-                var wordBtn = document.createElement('div');
-                wordBtn.classList.add('word');
-                wordBtn.innerHTML = word;
-                wordBtn.style.borderColor = 'white';
-                randomWords.appendChild(wordBtn);
-            })
-        }
-    });
+//     xhr.addEventListener("readystatechange", function () {
+//         if (this.readyState === this.DONE) {
+//             var words = JSON.parse(this.responseText);
+//             words.forEach(function(word) {
+//                 var wordBtn = document.createElement('div');
+//                 wordBtn.classList.add('word');
+//                 wordBtn.innerHTML = word;
+//                 wordBtn.style.borderColor = 'white';
+//                 randomWords.appendChild(wordBtn);
+//             })
+//         }
+//     });
 
-    xhr.open("GET", "https://random-words5.p.rapidapi.com/getMultipleRandom?count=15");
-    xhr.setRequestHeader("X-RapidAPI-Key", randomWordKey);
-    xhr.setRequestHeader("X-RapidAPI-Host", "random-words5.p.rapidapi.com");
-    xhr.send(data);
-})
+//     xhr.open("GET", "https://random-words5.p.rapidapi.com/getMultipleRandom?count=15");
+//     xhr.setRequestHeader("X-RapidAPI-Key", randomWordKey);
+//     xhr.setRequestHeader("X-RapidAPI-Host", "random-words5.p.rapidapi.com");
+//     xhr.send(data);
+// })
 
 // API GET request to words api to render related words after every search
-searchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const data = null;
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+// searchForm.addEventListener('submit', function(e) {
+//         e.preventDefault();
+//         const data = null;
+//         const xhr = new XMLHttpRequest();
+//         xhr.withCredentials = true;
         
-        relatedBtnsContainer.style.display = 'flex';
-        relatedBtnsContainer.innerHTML = '';
-        var galleryTitle = document.querySelector('.gallery-title');
-        galleryTitle.style.paddingTop = '25px';
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                var words = JSON.parse(this.responseText);
-                var maxTenWords = words.typeOf.slice(0,15);
-                maxTenWords.forEach(function(word) {
-                    var wordBtn = document.createElement('div');
-                    wordBtn.classList.add('word');
-                    wordBtn.innerHTML = word;
-                    relatedBtnsContainer.appendChild(wordBtn);
-                })
-            }
-        });
-        var searchValue = document.querySelector('#search-bar').value;
-        xhr.open("GET", `https://wordsapiv1.p.rapidapi.com/words/${searchValue}/typeOf`);
-        xhr.setRequestHeader("X-RapidAPI-Key", wordsKey);
-        xhr.setRequestHeader("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
-        xhr.send(data);
-});
+//         relatedBtnsContainer.style.display = 'flex';
+//         relatedBtnsContainer.innerHTML = '';
+//         var galleryTitle = document.querySelector('.gallery-title');
+//         galleryTitle.style.paddingTop = '25px';
+//         xhr.addEventListener("readystatechange", function () {
+//             if (this.readyState === this.DONE) {
+//                 var words = JSON.parse(this.responseText);
+//                 var maxTenWords = words.typeOf.slice(0,15);
+//                 maxTenWords.forEach(function(word) {
+//                     var wordBtn = document.createElement('div');
+//                     wordBtn.classList.add('word');
+//                     wordBtn.innerHTML = word;
+//                     relatedBtnsContainer.appendChild(wordBtn);
+//                 })
+//             }
+//         });
+//         var searchValue = document.querySelector('#search-bar').value;
+//         xhr.open("GET", `https://wordsapiv1.p.rapidapi.com/words/${searchValue}/typeOf`);
+//         xhr.setRequestHeader("X-RapidAPI-Key", wordsKey);
+//         xhr.setRequestHeader("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
+//         xhr.send(data);
+// });
 
 // event listener to search random word when clicked
 randomWords.addEventListener('click', function(event) {
@@ -311,65 +311,6 @@ function filterOrient() {
         });
         msnry.reloadItems()
     }
-    // if (selectedOrient === 'horiz') {
-    //     for (pic of pics) {
-    //         (pic.classList.contains('horiz'))? pic.style.display = 'block' : pic.style.display = 'none';
-    //     }
-    //     var msnry = new Masonry( grid, {
-    //         itemSelector: '.horiz',
-    //         fitWidth: true,
-    //         gutter: 25
-    //     });
-    //     msnry.reloadItems()
-    // } else if (selectedOrient === 'vert') {
-    //     for (pic of pics) {
-    //         (pic.classList.contains('vert'))? pic.style.display = 'block' : pic.style.display = 'none';
-    //     }
-    //     var msnry = new Masonry( grid, {
-    //         itemSelector: '.vert',
-    //         fitWidth: true,
-    //         gutter: 25
-    //     });
-    //     msnry.reloadItems()
-    // } else {
-    //     var msnry = new Masonry( grid, {
-    //         itemSelector: '.grid-item',
-    //         fitWidth: true,
-    //         gutter: 25
-    //     });
-    //     msnry.reloadItems()
-    // }
-    // for (pic of pics) {
-    //     if (selectedOrient === 'All Orientations') {
-    //         pic.style.display = 'block';
-    //         var msnry = new Masonry( grid, {
-    //             itemSelector: '.grid-item',
-    //             fitWidth: true,
-    //             gutter: 25
-    //         });
-    //         msnry.reloadItems()
-    //     } else if (pic.dataset.orient === selectedOrient) {
-    //         pic.style.display = 'block';
-    //         if (pic.dataset.orient === 'Vertical') {
-    //             var msnry = new Masonry( grid, {
-    //                 itemSelector: '.vert',
-    //                 fitWidth: true,
-    //                 gutter: 25
-    //             });
-    //             msnry.reloadItems()
-    //         } else {
-    //             var msnry = new Masonry( grid, {
-    //                 itemSelector: '.horiz',
-    //                 fitWidth: true,
-    //                 gutter: 25
-    //             });
-    //             msnry.reloadItems()
-    //         }
-    
-    //     } else {
-    //         pic.style.display = 'none';
-    //     }
-    // }
 }
 
 function filterSize() {
@@ -378,9 +319,8 @@ function filterSize() {
 
 // function to render more photos when scrolling to the bottom of the page
 function scollListener() {
-    // console.log(orientSelect);
     const { scrollTop, scrollHeight, clientHeight} = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 5 && currentPage < 5) {
+    if (scrollTop + clientHeight >= scrollHeight - 350) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -433,26 +373,9 @@ function scollListener() {
                     picture.addEventListener('mouseout', function() {
                         this.children[1].classList.remove('active');
                     });
-            // if (orientSelect.value === 'vert') {
-            //     (picture.classList.contains('vert'))? grid.appendChild(picture) : '';
-            // } else if (orientSelect.value === 'horiz') {
-            //     (picture.classList.contains('horiz'))? grid.appendChild(picture) : '';
-            // } else {
-            //     grid.appendChild(picture);
-            // }
-            grid.appendChild(picture);
-                    
+            grid.appendChild(picture);  
             });
-            // console.log(orientSelect.value);
-            // filterOrient();
-            var msnry = new Masonry( grid, {
-                itemSelector: '.grid-item',
-                fitWidth: true,
-                gutter: 25
-            });
-            imagesLoaded( grid ).on( 'progress', function() {
-                msnry.layout();
-            });
+            filterOrient();
         };
     };
     var searchValue = document.querySelector('#search-bar').value;
