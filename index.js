@@ -93,7 +93,7 @@ searchForm.addEventListener('submit', function(e) {
                     </div>
                 `;
                 (pic.width > pic.height)? (picture.classList.add('horiz')) : (picture.classList.add('vert'));
-                
+
                 let largestDim;
                 if (pic.width > pic.height) {
                     largestDim = pic.width;
@@ -329,6 +329,47 @@ function filterSize() {
     let selectedSize = sizeSelect.value;
     let pics = document.getElementsByClassName('grid-item');
     console.log(selectedSize);
+    if (selectedSize === 'sm') {
+        for (pic of pics) {
+            (pic.classList.contains('sm'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.sm',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else if (selectedSize === 'md') {
+        for (pic of pics) {
+            (pic.classList.contains('md'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.md',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else if (selectedSize === 'lg') {
+        for (pic of pics) {
+            (pic.classList.contains('lg'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.lg',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    } else {
+        for (pic of pics) {
+            (pic.classList.contains('grid-item'))? pic.style.display = 'block' : pic.style.display = 'none';
+        }
+        var msnry = new Masonry( grid, {
+            itemSelector: '.grid-item',
+            fitWidth: true,
+            gutter: 25
+        });
+        msnry.reloadItems()
+    }
 }
 
 // function to render more photos when scrolling to the bottom of the page
@@ -381,6 +422,21 @@ function scollListener() {
                         </div>
                     `;
                     (pic.width > pic.height)? picture.classList.add('horiz') : picture.classList.add('vert');
+
+                    let largestDim;
+                    if (pic.width > pic.height) {
+                        largestDim = pic.width;
+                    } else {
+                        largestDim = pic.height;
+                    }
+                    if (largestDim > 4000) {
+                        picture.classList.add('lg');
+                    } else if (largestDim >= 3000 && largestDim <= 4000) {
+                        picture.classList.add('md');
+                    } else {
+                        picture.classList.add('sm');
+                    }
+
                     picture.addEventListener('mouseover', function() {
                             this.children[1].classList.add('active');
                     });
