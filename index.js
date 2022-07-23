@@ -141,30 +141,30 @@ searchForm.addEventListener('submit', function(e) {
 window.addEventListener('scroll', throttle(scollListener, 300) );
 
 // API GET request to random-words api to render random words on initial load
-// window.addEventListener('load', function() {
-//     console.log('window loaded')
-//     const data = null;
-//     const xhr = new XMLHttpRequest();
-//     xhr.withCredentials = true;
+window.addEventListener('load', function() {
+    console.log('window loaded')
+    const data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
 
-//     xhr.addEventListener("readystatechange", function () {
-//         if (this.readyState === this.DONE) {
-//             var words = JSON.parse(this.responseText);
-//             words.forEach(function(word) {
-//                 var wordBtn = document.createElement('div');
-//                 wordBtn.classList.add('word');
-//                 wordBtn.innerHTML = word;
-//                 wordBtn.style.borderColor = 'white';
-//                 randomWords.appendChild(wordBtn);
-//             })
-//         }
-//     });
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            var words = JSON.parse(this.responseText);
+            words.forEach(function(word) {
+                var wordBtn = document.createElement('div');
+                wordBtn.classList.add('word');
+                wordBtn.innerHTML = word;
+                wordBtn.style.borderColor = 'white';
+                randomWords.appendChild(wordBtn);
+            })
+        }
+    });
 
-//     xhr.open("GET", "https://random-words5.p.rapidapi.com/getMultipleRandom?count=15");
-//     xhr.setRequestHeader("X-RapidAPI-Key", randomWordKey);
-//     xhr.setRequestHeader("X-RapidAPI-Host", "random-words5.p.rapidapi.com");
-//     xhr.send(data);
-// })
+    xhr.open("GET", "https://random-words5.p.rapidapi.com/getMultipleRandom?count=15");
+    xhr.setRequestHeader("X-RapidAPI-Key", randomWordKey);
+    xhr.setRequestHeader("X-RapidAPI-Host", "random-words5.p.rapidapi.com");
+    xhr.send(data);
+})
 
 // API GET request to words api to render related words after every search
 searchForm.addEventListener('submit', function(e) {
